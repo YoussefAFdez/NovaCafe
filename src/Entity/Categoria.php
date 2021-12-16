@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +36,18 @@ class Categoria
      * @ORM\Column(type="text")
      */
     private $descripcion;
+
+    /**
+     * @var Producto[]|Collection
+     * @ORM\OneToMany(targetEntity="Producto", mappedBy="categoria")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $productos;
+
+    public function __construct()
+    {
+        $this->productos = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -95,6 +108,24 @@ class Categoria
     public function setDescripcion(string $descripcion): Categoria
     {
         $this->descripcion = $descripcion;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Producto[]
+     */
+    public function getProductos()
+    {
+        return $this->productos;
+    }
+
+    /**
+     * @param Collection|Producto[] $productos
+     * @return Categoria
+     */
+    public function setProductos($productos)
+    {
+        $this->productos = $productos;
         return $this;
     }
 

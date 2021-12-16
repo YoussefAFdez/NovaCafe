@@ -56,6 +56,13 @@ class Producto
      */
     private $ventas;
 
+    /**
+     * @var Categoria
+     * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="productos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categoria;
+
     public function __construct()
     {
         $this->ventas = new ArrayCollection();
@@ -176,6 +183,25 @@ class Producto
         $this->ventas = $ventas;
         return $this;
     }
+
+    /**
+     * @return Categoria
+     */
+    public function getCategoria(): Categoria
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * @param Categoria $categoria
+     * @return Producto
+     */
+    public function setCategoria(Categoria $categoria): Producto
+    {
+        $this->categoria = $categoria;
+        return $this;
+    }
+
 
 
 }
