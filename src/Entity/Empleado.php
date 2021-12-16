@@ -34,6 +34,12 @@ class Empleado
 
     /**
      * @var string
+     * @ORM\Column(type="string")
+     */
+    private $apellidos;
+
+    /**
+     * @var string
      * @ORM\Column(type="string", unique=true)
      */
     private $dni;
@@ -109,6 +115,24 @@ class Empleado
     public function setNombre(string $nombre): Empleado
     {
         $this->nombre = $nombre;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApellidos(): string
+    {
+        return $this->apellidos;
+    }
+
+    /**
+     * @param string $apellidos
+     * @return Empleado
+     */
+    public function setApellidos(string $apellidos): Empleado
+    {
+        $this->apellidos = $apellidos;
         return $this;
     }
 
