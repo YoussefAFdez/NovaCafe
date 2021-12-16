@@ -38,6 +38,13 @@ class Categoria
     private $descripcion;
 
     /**
+     * @var Empleado
+     * @ORM\ManyToOne(targetEntity="Empleado", inversedBy="ventas")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $creadaPor;
+
+    /**
      * @var Producto[]|Collection
      * @ORM\OneToMany(targetEntity="Producto", mappedBy="categoria")
      * @ORM\JoinColumn(nullable=false)
@@ -128,6 +135,25 @@ class Categoria
         $this->productos = $productos;
         return $this;
     }
+
+    /**
+     * @return Empleado
+     */
+    public function getCreadaPor(): Empleado
+    {
+        return $this->creadaPor;
+    }
+
+    /**
+     * @param Empleado $creadaPor
+     * @return Categoria
+     */
+    public function setCreadaPor(Empleado $creadaPor): Categoria
+    {
+        $this->creadaPor = $creadaPor;
+        return $this;
+    }
+
 
 
 }
