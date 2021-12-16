@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,17 @@ class Empleado
      * @ORM\Column(type="boolean")
      */
     private $administrador;
+
+    /**
+     * @var Venta[]|Collection
+     * @ORM\OneToMany(targetEntity="Venta", mappedBy="empleado")
+     */
+    private $ventas;
+
+    public function __construct()
+    {
+        $this->ventas = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -143,6 +156,24 @@ class Empleado
     public function setAdministrador(bool $administrador): Empleado
     {
         $this->administrador = $administrador;
+        return $this;
+    }
+
+    /**
+     * @return Venta[]|Collection
+     */
+    public function getVentas()
+    {
+        return $this->ventas;
+    }
+
+    /**
+     * @param Venta[]|Collection $ventas
+     * @return Empleado
+     */
+    public function setVentas($ventas)
+    {
+        $this->ventas = $ventas;
         return $this;
     }
 
