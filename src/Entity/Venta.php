@@ -31,6 +31,12 @@ class Venta
     private $fechaVenta;
 
     /**
+     * @var Cliente
+     * @ORM\ManyToOne(targetEntity="Cliente", inversedBy="ventas")
+     */
+    private $cliente;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -71,6 +77,24 @@ class Venta
     public function setFechaVenta(\DateTIme $fechaVenta): Venta
     {
         $this->fechaVenta = $fechaVenta;
+        return $this;
+    }
+
+    /**
+     * @return Cliente
+     */
+    public function getCliente(): Cliente
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * @param Cliente $cliente
+     * @return Venta
+     */
+    public function setCliente(Cliente $cliente): Venta
+    {
+        $this->cliente = $cliente;
         return $this;
     }
 

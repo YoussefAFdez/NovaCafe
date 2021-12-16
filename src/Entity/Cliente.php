@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,6 +30,18 @@ class Cliente
      * @ORM\Column(type="string")
      */
     private $apellido;
+
+    /**
+     * @var Venta[]|Collection
+     * @ORM\OneToMany(targetEntity="Venta", mappedBy="cliente")
+     */
+    private $ventas;
+
+    public function __construct()
+    {
+        $this->ventas = new ArrayCollection();
+    }
+
 
     /**
      * @return int
@@ -71,6 +84,24 @@ class Cliente
     public function setApellido(string $apellido): Cliente
     {
         $this->apellido = $apellido;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Venta[]
+     */
+    public function getVentas()
+    {
+        return $this->ventas;
+    }
+
+    /**
+     * @param Collection|Venta[] $ventas
+     * @return Cliente
+     */
+    public function setVentas($ventas)
+    {
+        $this->ventas = $ventas;
         return $this;
     }
 
