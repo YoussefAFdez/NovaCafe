@@ -39,7 +39,7 @@ class Categoria
 
     /**
      * @var Empleado
-     * @ORM\ManyToOne(targetEntity="Empleado", inversedBy="ventas")
+     * @ORM\ManyToOne(targetEntity="Empleado", inversedBy="categorias")
      * @ORM\JoinColumn(nullable=false)
      */
     private $creadaPor;
