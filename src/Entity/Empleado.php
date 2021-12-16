@@ -56,9 +56,16 @@ class Empleado
      */
     private $ventas;
 
+    /**
+     * @var Categoria[]|Collection
+     * @ORM\OneToMany(targetEntity="Categoria", mappedBy="creadaPor")
+     */
+    private $categorias;
+
     public function __construct()
     {
         $this->ventas = new ArrayCollection();
+        $this->categorias = new ArrayCollection();
     }
 
     /**
@@ -174,6 +181,24 @@ class Empleado
     public function setVentas($ventas)
     {
         $this->ventas = $ventas;
+        return $this;
+    }
+
+    /**
+     * @return Categoria[]|Collection
+     */
+    public function getCategorias()
+    {
+        return $this->categorias;
+    }
+
+    /**
+     * @param Categoria[]|Collection $categorias
+     * @return Empleado
+     */
+    public function setCategorias($categorias)
+    {
+        $this->categorias = $categorias;
         return $this;
     }
 
