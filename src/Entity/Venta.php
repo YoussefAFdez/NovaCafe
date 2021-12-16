@@ -35,6 +35,7 @@ class Venta
     /**
      * @var Cliente
      * @ORM\ManyToOne(targetEntity="Cliente", inversedBy="ventas")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $cliente;
 

@@ -34,6 +34,7 @@ class Cliente
     /**
      * @var Venta[]|Collection
      * @ORM\OneToMany(targetEntity="Venta", mappedBy="cliente")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $ventas;
 
@@ -41,7 +42,6 @@ class Cliente
     {
         $this->ventas = new ArrayCollection();
     }
-
 
     /**
      * @return int
