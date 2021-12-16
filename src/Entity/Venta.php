@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,18 @@ class Venta
      * @ORM\ManyToOne(targetEntity="Cliente", inversedBy="ventas")
      */
     private $cliente;
+
+    /**
+     * @var Producto[]|Collection
+     * @ORM\ManyToMany(targetEntity="Producto", mappedBy="ventas")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $productos;
+
+    public function __construct()
+    {
+        $this->productos = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -95,6 +109,24 @@ class Venta
     public function setCliente(Cliente $cliente): Venta
     {
         $this->cliente = $cliente;
+        return $this;
+    }
+
+    /**
+     * @return Producto[]|Collection
+     */
+    public function getProductos()
+    {
+        return $this->productos;
+    }
+
+    /**
+     * @param Producto[]|Collection $productos
+     * @return Venta
+     */
+    public function setProductos($productos)
+    {
+        $this->productos = $productos;
         return $this;
     }
 

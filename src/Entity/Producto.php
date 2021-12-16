@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,17 @@ class Producto
      * @ORM\Column(type="integer")
      */
     private $stock;
+
+    /**
+     * @var Venta[]|Collection
+     * @ORM\ManyToMany(targetEntity="Venta", inversedBy="productos")
+     */
+    private $ventas;
+
+    public function __construct()
+    {
+        $this->ventas = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -143,6 +156,24 @@ class Producto
     public function setStock(int $stock): Producto
     {
         $this->stock = $stock;
+        return $this;
+    }
+
+    /**
+     * @return Venta[]|Collection
+     */
+    public function getVentas()
+    {
+        return $this->ventas;
+    }
+
+    /**
+     * @param Venta[]|Collection $ventas
+     * @return Producto
+     */
+    public function setVentas($ventas)
+    {
+        $this->ventas = $ventas;
         return $this;
     }
 
