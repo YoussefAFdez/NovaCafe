@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title %} Producto {% endblock %}
+{% block body %}
+    <h1>Listado de Productos</h1>
+    <table class="tabla1">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Veces Vendido</th>
+                <th>Categoría</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for elemento in elementos %}
+                <tr>
+                    <td>{{ elemento.producto.codigo }}</td>
+                    <td>{{ elemento.producto.nombre }}</td>
+                    <td>{{ elemento.producto.descripcion }}</td>
+                    <td>{{ elemento.producto.precio }}€</td>
+                    <td>{{ elemento.producto.stock }}</td>
+                    <td>{{ elemento.total }}</td>
+                    <td>
+                        <a href="{{ path("categoriaProducto", {'id': elemento.producto.categoria.id}) }}">
+                            {{ elemento.producto.categoria }}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
