@@ -42,7 +42,7 @@ class AppFixtures extends Fixture
             return [
                 'cliente' => ClienteFactory::random(),
                 'productos' => ProductoFactory::randomRange(1, 10),
-                'empleado' => ClienteFactory::random()
+                'empleado' => EmpleadoFactory::random()
             ];
         });
 
