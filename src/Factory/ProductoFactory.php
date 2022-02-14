@@ -36,11 +36,11 @@ final class ProductoFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'codigo' => self::faker()->text(),
-            'nombre' => self::faker()->text(),
+            'codigo' => self::faker()->unique()->numerify('CO#####'),
+            'nombre' => self::faker()->boolean() ? self::faker()->sentence(1) : self::faker()->boolean(60) ? self::faker()->sentence(2) : self::faker()->sentence(3),
             'descripcion' => self::faker()->text(),
-            'precio' => self::faker()->randomFloat(),
-            'stock' => self::faker()->randomNumber(),
+            'precio' => self::faker()->randomFloat(2, 1, 10),
+            'stock' => self::faker()->numberBetween(0, 50),
         ];
     }
 
