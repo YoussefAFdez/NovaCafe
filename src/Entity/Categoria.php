@@ -56,6 +56,10 @@ class Categoria
         $this->productos = new ArrayCollection();
     }
 
+    public function __toString() {
+        return $this->getNombre();
+    }
+
     /**
      * @return int
      */

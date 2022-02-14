@@ -43,6 +43,10 @@ class Cliente
         $this->ventas = new ArrayCollection();
     }
 
+    public function __toString() {
+        return $this->getNombre() . ' ' . $this->getApellido();
+    }
+
     /**
      * @return int
      */

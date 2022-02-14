@@ -74,6 +74,10 @@ class Empleado
         $this->categorias = new ArrayCollection();
     }
 
+    public function __toString() {
+        return $this->getApellidos() . ', ' . $this->getNombre();
+    }
+
     /**
      * @return int
      */

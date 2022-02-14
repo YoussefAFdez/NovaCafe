@@ -68,6 +68,10 @@ class Producto
         $this->ventas = new ArrayCollection();
     }
 
+    public function __toString() {
+        return $this->getNombre();
+    }
+
     /**
      * @return int
      */
