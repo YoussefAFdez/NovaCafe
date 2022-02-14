@@ -36,8 +36,8 @@ final class CategoriaFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'codigo' => self::faker()->text(),
-            'nombre' => self::faker()->text(),
+            'codigo' => self::faker()->unique()->numerify('#####'),
+            'nombre' => self::faker()->text(self::faker()->numberBetween(4, 20)),
             'descripcion' => self::faker()->text(),
         ];
     }
