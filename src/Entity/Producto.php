@@ -52,7 +52,7 @@ class Producto
 
     /**
      * @var Venta[]|Collection
-     * @ORM\ManyToMany(targetEntity="Venta", inversedBy="productos")
+     * @ORM\ManyToMany(targetEntity="Venta", mappedBy="productos")
      */
     private $ventas;
 
