@@ -131,7 +131,7 @@ class Producto
     }
 
     /**
-     * @return double
+     * @return float
      */
     public function getPrecio(): double
     {
@@ -139,10 +139,10 @@ class Producto
     }
 
     /**
-     * @param double $precio
+     * @param float $precio
      * @return Producto
      */
-    public function setPrecio(double $precio): Producto
+    public function setPrecio(float $precio): Producto
     {
         $this->precio = $precio;
         return $this;
