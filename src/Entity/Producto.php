@@ -39,7 +39,7 @@ class Producto
     private $descripcion;
 
     /**
-     * @var double
+     * @var float
      * @ORM\Column(type="float")
      */
     private $precio;
@@ -137,7 +137,7 @@ class Producto
     /**
      * @return float
      */
-    public function getPrecio(): double
+    public function getPrecio(): float
     {
         return $this->precio;
     }
