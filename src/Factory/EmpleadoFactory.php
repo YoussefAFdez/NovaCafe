@@ -36,12 +36,12 @@ final class EmpleadoFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'codigo' => self::faker()->text(),
-            'nombre' => self::faker()->text(),
-            'apellidos' => self::faker()->text(),
-            'dni' => self::faker()->text(),
-            'gerente' => self::faker()->boolean(),
-            'administrador' => self::faker()->boolean(),
+            'codigo' => self::faker()->unique()->numerify('EM###'),
+            'nombre' => self::faker()->firstName(),
+            'apellidos' => self::faker()->lastName() . self::faker()->lastName(),
+            'dni' => self::faker()->unique()->dni(),
+            'gerente' => false,
+            'administrador' => false,
         ];
     }
 
