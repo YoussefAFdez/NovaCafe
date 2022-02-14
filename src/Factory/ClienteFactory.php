@@ -36,8 +36,8 @@ final class ClienteFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'nombre' => self::faker()->text(),
-            'apellido' => self::faker()->text(),
+            'nombre' => self::faker()->firstName(),
+            'apellido' => self::faker()->lastName(),
         ];
     }
 
