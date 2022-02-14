@@ -42,7 +42,6 @@ class Venta
     /**
      * @var Producto[]|Collection
      * @ORM\ManyToMany(targetEntity="Producto", inversedBy="ventas")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $productos;
 
