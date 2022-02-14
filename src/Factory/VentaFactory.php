@@ -36,8 +36,8 @@ final class VentaFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'codigo' => self::faker()->text(),
-            'fechaVenta' => self::faker()->datetime(),
+            'codigo' => self::faker()->unique()->numerify('VE#####'),
+            'fechaVenta' => self::faker()->dateTimeBetween('-1 year'),
         ];
     }
 
