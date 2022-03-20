@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %} Categorías - {{ parent() }} {% endblock %}
+{% block body %}
+    <h1>Listado de Categorías</h1>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Creador</th>
+            <th>Productos</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for categoria in categorias %}
+            <tr>
+                <td>{{ categoria.codigo }}</td>
+                <td>{{ categoria.nombre }}</td>
+                <td>{{ categoria.descripcion }}</td>
+                <td>{{ categoria.creadaPor }}</td>
+                <td>
+                    <a href="{{ path("categoria_productos", {'id': categoria.id}) }}" class="btn btn-primary">Ver Productos</a>
+                </td>
+                <td>
+                    <a href="{{ path('categoria_modificar', {'id': categoria.id}) }}" class="btn btn-success">Modificar</a>
+                </td>
+            </tr>
+        {% else %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

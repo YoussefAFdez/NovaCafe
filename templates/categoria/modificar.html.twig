@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if categoria.id %}Modificar{% else %}Nuevo{% endif %} Categoría - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% if categoria.id %}
+        <h1>Modificar Categoría</h1>
+    {% else %}
+        <h1>Nueva Categoría</h1>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">Guardar la categoría</button>
+    <a class="btn btn-primary" href="{{ path('categoria_listar') }}">Volver al listado</a>
+    {% if categoria.id %}
+        <a class="btn btn-danger" href="{{ path('producto_eliminar', {'id': categoria.id}) }}">Eliminar</a>
+    {% endif %}
+
+{% endblock %}
