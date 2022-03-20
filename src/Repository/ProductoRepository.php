@@ -29,4 +29,23 @@ class ProductoRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function guardar()
+    {
+        $this->getEntityManager()->flush();
+    }
+
+    public function nuevo()
+    {
+        $producto = new Producto();
+        $this->getEntityManager()->persist($producto);
+
+        return $producto;
+    }
+
+    public function eliminar(Producto $producto)
+    {
+        $this->getEntityManager()->remove($producto);
+        $this->guardar();
+    }
+
 }
