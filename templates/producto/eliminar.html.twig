@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Eliminar Producto - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Eliminación de producto</h1>
+    <h2>Estás a punto de eliminar el producto "{{ producto }}". ¿Estás seguro de ello? Esta acción no se puede deshacer.</h2>
+    <form method="post">
+        <button type="submit" name="confirmar" value="si" class="btn btn-danger">Borrar permanentemente</button>
+        <a href="{{ path('listadoProductos') }}" class="btn btn-primary">Volver al listado</a>
+    </form>
+{% endblock %}
+
+
+

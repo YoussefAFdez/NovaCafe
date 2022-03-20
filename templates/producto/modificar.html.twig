@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if producto.id %}Modificar{% else %}Nuevo{% endif %} Producto - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% if producto.id %}
+        <h1>Modificar Producto</h1>
+    {% else %}
+        <h1>Nueva Producto</h1>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">Guardar el producto</button>
+    <a class="btn btn-primary" href="{{ path('listadoProductos') }}">Volver al listado</a>
+    {% if producto.id %}
+        <a class="btn btn-danger" href="{{ path('producto_eliminar', {'id': producto.id}) }}"
+    {% endif %}
+
+{% endblock %}
+
+
+

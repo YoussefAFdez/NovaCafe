@@ -66,9 +66,9 @@ class ProductoController extends AbstractController
     }
 
     /**
-     * @Route("/trayecto/eliminar/{id}", name="trayecto_eliminar")
+     * @Route("/producto/eliminar/{id}", name="producto_eliminar")
      */
-    public function eliminarTrayecto(Request $request, ProductoRepository $productoRepository, Producto $producto) : Response {
+    public function eliminarProducto(Request $request, ProductoRepository $productoRepository, Producto $producto) : Response {
         if ($request->get('confirmar', false)) {
             try {
                 $productoRepository->eliminar($producto);
