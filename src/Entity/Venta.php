@@ -27,7 +27,7 @@ class Venta
     private $codigo;
 
     /**
-     * @var \DateTIme
+     * @var \DateTime
      * @ORM\Column(type="date")
      */
     private $fechaVenta;
@@ -84,18 +84,18 @@ class Venta
     }
 
     /**
-     * @return \DateTIme
+     * @return \DateTime
      */
-    public function getFechaVenta(): \DateTIme
+    public function getFechaVenta(): \DateTime
     {
         return $this->fechaVenta;
     }
 
     /**
-     * @param \DateTIme $fechaVenta
+     * @param \DateTime $fechaVenta
      * @return Venta
      */
-    public function setFechaVenta(\DateTIme $fechaVenta): Venta
+    public function setFechaVenta(\DateTime $fechaVenta): Venta
     {
         $this->fechaVenta = $fechaVenta;
         return $this;
