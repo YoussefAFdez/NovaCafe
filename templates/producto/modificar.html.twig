@@ -14,7 +14,7 @@
     <button type="submit" class="btn btn-success">Guardar el producto</button>
     <a class="btn btn-primary" href="{{ path('listadoProductos') }}">Volver al listado</a>
     {% if producto.id %}
-        <a class="btn btn-danger" href="{{ path('producto_eliminar', {'id': producto.id}) }}"
+        <a class="btn btn-danger" href="{{ path('producto_eliminar', {'id': producto.id}) }}">Eliminar</a>
     {% endif %}
 
 {% endblock %}

@@ -2,7 +2,7 @@
 {% block title %} Producto {% endblock %}
 {% block body %}
     <h1>Listado de Productos</h1>
-    <table class="tabla1">
+    <table class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
                 <th>Código</th>
@@ -27,6 +27,9 @@
                         <a href="{{ path("categoriaProducto", {'id': elemento.producto.categoria.id}) }}">
                             {{ elemento.producto.categoria }}
                         </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('producto_modificar', {'id': elemento.producto.id}) }}" class="btn btn-success">Modificar</a>
                     </td>
                 </tr>
             {% else %}
