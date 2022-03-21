@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Cliente;
+use App\Repository\ClienteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +34,7 @@ class ClienteController extends AbstractController
      * @Route("/cliente/modificar/{id}", name="cliente_modificar")
      */
     public function modificarCliente(Request $request, ClienteRepository $clienteRepository, Cliente $cliente) {
-        $form = $this->createForm(CategoriaType::class, $cliente);
+        $form = $this->createForm(ClienteType::class, $cliente);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
