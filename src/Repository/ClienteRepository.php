@@ -41,4 +41,13 @@ class ClienteRepository extends ServiceEntityRepository
         $this->guardar();
     }
 
+    public function ventas(Cliente $cliente)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery("SELECT v FROM App\Entity\Venta v WHERE v.cliente = :cliente")
+            ->setParameter("cliente", $cliente)
+            ->getResult();
+    }
+
 }
