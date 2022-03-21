@@ -16,7 +16,7 @@ class VentaController extends AbstractController
 
     /**
      * @Route("/venta", name="venta_listar")
-     * @Security("is_granted('ROLE_EMPLEADO'))
+     * @Security("is_granted('ROLE_EMPLEADO')")
      */
     public function listarVentas(VentaRepository $ventaRepository) : Response {
         $ventas = $ventaRepository->findAllOrdenados();
@@ -27,7 +27,7 @@ class VentaController extends AbstractController
 
     /**
      * @Route("/venta/nueva", name="venta_nueva")
-     * @Security("is_granted('ROLE_EMPLEADO'))
+     * @Security("is_granted('ROLE_EMPLEADO')")
      */
     public function nuevaVenta(Request $request, VentaRepository $ventaRepository) : Response {
         $venta = $ventaRepository->nuevo();
@@ -36,7 +36,7 @@ class VentaController extends AbstractController
 
     /**
      * @Route("/venta/modificar/{id}", name="venta_modificar")
-     * @Security("is_granted('ROLE_GERENTE'))
+     * @Security("is_granted('ROLE_GERENTE')")
      */
     public function modificarVenta(Request $request, VentaRepository $ventaRepository, Venta $venta) {
         $form = $this->createForm(VentaType::class, $venta);
@@ -59,7 +59,7 @@ class VentaController extends AbstractController
 
     /**
      * @Route("/venta/eliminar/{id}", name="venta_eliminar")
-     * @Security("is_granted('ROLE_EMPLEADO'))
+     * @Security("is_granted('ROLE_EMPLEADO')")
      */
     public function eliminarVenta(Request $request, VentaRepository $ventaRepository, Venta $venta) : Response {
         if ($request->get('confirmar', false)) {
