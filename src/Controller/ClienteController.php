@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Cliente;
 use App\Form\ClienteType;
 use App\Repository\ClienteRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ class ClienteController extends AbstractController
 
     /**
      * @Route("/cliente", name="cliente_listar")
+     * @Security("is_granted('ROLE_EMPLEADO')")
      */
     public function listarClientes(ClienteRepository $clienteRepository) : Response {
         $clientes = $clienteRepository->findAllOrdenados();
@@ -25,6 +27,7 @@ class ClienteController extends AbstractController
 
     /**
      * @Route("/cliente/nuevo", name="cliente_nuevo")
+     * @Security("is_granted('ROLE_EMPLEADO')")
      */
     public function nuevoCliente(Request $request, ClienteRepository $clienteRepository) : Response {
         $cliente = $clienteRepository->nuevo();
@@ -33,6 +36,7 @@ class ClienteController extends AbstractController
 
     /**
      * @Route("/cliente/modificar/{id}", name="cliente_modificar")
+     * @Security("is_granted('ROLE_GERENTE')")
      */
     public function modificarCliente(Request $request, ClienteRepository $clienteRepository, Cliente $cliente) {
         $form = $this->createForm(ClienteType::class, $cliente);
@@ -55,6 +59,7 @@ class ClienteController extends AbstractController
 
     /**
      * @Route("/cliente/eliminar/{id}", name="cliente_eliminar")
+     * @Security("is_granted('ROLE_GERENTE')")
      */
     public function eliminarCliente(Request $request, ClienteRepository $clienteRepository, Cliente $cliente) : Response {
         if ($request->get('confirmar', false)) {
@@ -72,6 +77,7 @@ class ClienteController extends AbstractController
 
     /**
      * @Route("/cliente/ventas/{id}", name="cliente_ventas")
+     * @Security("is_granted('ROLE_EMPLEADO')")
      */
     public function ventasCliente(ClienteRepository $clienteRepository, Cliente $cliente) : Response {
         $ventas = $clienteRepository->ventas($cliente);
