@@ -39,9 +39,11 @@
                 <td>
                     <a href="{{ path('empleado_ventas', {'id': venta.empleado.id}) }}">{{ venta.empleado }}</a>
                 </td>
-                <td>
-                    <a href="{{ path('venta_modificar', {'id': venta.id}) }}" class="btn btn-success">Modificar</a>
-                </td>
+                {% if is_granted('ROLE_GERENTE') %}
+                    <td>
+                        <a href="{{ path('venta_modificar', {'id': venta.id}) }}" class="btn btn-success">Modificar</a>
+                    </td>
+                {% endif %}
             </tr>
         {% else %}
             <h2>No existen ventas</h2>
