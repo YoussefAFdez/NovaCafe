@@ -68,4 +68,15 @@ class ClienteController extends AbstractController
             'cliente' => $cliente
         ]);
     }
+
+    /**
+     * @Route("/cliente/ventas/{id}", name="cliente_ventas")
+     */
+    public function ventasCliente(ClienteRepository $clienteRepository, Cliente $cliente) : Response {
+        $ventas = $clienteRepository->ventas($cliente);
+        return $this->render("cliente/ventas.html.twig", [
+           'ventas' => $ventas,
+           'cliente' => $cliente
+        ]);
+    }
 }
