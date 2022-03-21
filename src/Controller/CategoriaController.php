@@ -24,6 +24,14 @@ class CategoriaController extends AbstractController
     }
 
     /**
+     * @Route("/categoria/nuevo", name="categoria_nuevo")
+     */
+    public function nuevaCategoria(Request $request, CategoriaRepository $categoriaRepository) : Response {
+        $categoria = $categoriaRepository->nuevo();
+        return $this->modificarCategoria($request, $categoriaRepository, $categoria);
+    }
+
+    /**
      * @Route("/categoria/{id}", name="categoria_productos")
      */
     public function categoriaDeProducto(CategoriaRepository $categoriaRepository, Categoria $categoria) : Response {
@@ -54,14 +62,6 @@ class CategoriaController extends AbstractController
             'categoria' => $categoria,
             'form' => $form->createView()
         ]);
-    }
-
-    /**
-     * @Route("/categoria/nuevo", name="categoria_nuevo")
-     */
-    public function nuevaCategoria(Request $request, CategoriaRepository $categoriaRepository) : Response {
-        $producto = $categoriaRepository->nuevo();
-        return $this->modificarCategoria($request, $categoriaRepository, $producto);
     }
 
     /**

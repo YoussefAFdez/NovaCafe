@@ -25,6 +25,14 @@ class ProductoController extends AbstractController
     }
 
     /**
+     * @Route("/producto/nuevo", name="producto_nuevo")
+     */
+    public function nuevoProducto(Request $request, ProductoRepository $productoRepository) : Response {
+        $producto = $productoRepository->nuevo();
+        return $this->modificarProducto($request, $productoRepository, $producto);
+    }
+
+    /**
      * @Route("/producto/{id}", name="categoriaProducto")
      */
     public function categoriaDeProducto(ProductoRepository $productoRepository, Categoria $categoria) : Response {
@@ -55,14 +63,6 @@ class ProductoController extends AbstractController
             'producto' => $producto,
             'form' => $form->createView()
         ]);
-    }
-
-    /**
-     * @Route("/producto/nuevo", name="producto_nuevo")
-     */
-    public function nuevoProducto(Request $request, ProductoRepository $productoRepository) : Response {
-        $producto = $productoRepository->nuevo();
-        return $this->modificarProducto($request, $productoRepository, $producto);
     }
 
     /**

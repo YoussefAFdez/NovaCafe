@@ -2,6 +2,7 @@
 {% block title %} Categorías - {{ parent() }} {% endblock %}
 {% block body %}
     <h1>Listado de Categorías</h1>
+    <a href="{{ path('categoria_nuevo') }}" class="btn btn-primary">Nueva Categoría</a>
     <table class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
