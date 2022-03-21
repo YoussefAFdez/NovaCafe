@@ -28,7 +28,7 @@ class ClienteController extends AbstractController
      */
     public function nuevoCliente(Request $request, ClienteRepository $clienteRepository) : Response {
         $cliente = $clienteRepository->nuevo();
-        return $this->nuevoCliente($request, $clienteRepository, $cliente);
+        return $this->modificarCliente($request, $clienteRepository, $cliente);
     }
 
     /**
