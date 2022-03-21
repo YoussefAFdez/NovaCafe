@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+    <h1>Bienvenido/a a la Camioneta!</h1>
+
+    {% if error %}
+        <p class="alert alert-danger">{{ error.message() }}</p>
+    {% endif %}
+
+    <form class="form" method="post">
+        <input type="text" name="_username" placeholder="Correo electrónico" class="form-control" value="{{ last_user }}" />
+        <input type="password" name="_password" placeholder="Contraseña" class="form-control"/>
+        <button type="submit" class="btn btn-success">Iniciar Sesión</button>
+    </form>
+
+{% endblock %}
