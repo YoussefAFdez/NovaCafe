@@ -5,9 +5,12 @@ namespace App\Form;
 use App\Entity\Empleado;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class EmpleadoType extends AbstractType
 {
@@ -33,6 +36,26 @@ class EmpleadoType extends AbstractType
             ->add('administrador', CheckboxType::class, [
                 'label' => 'Es Administrador:',
                 'required' => false
+            ])
+            ->add('nombreUsuario', TextType::class, [
+                'label' => 'Nombre de Usuario: '
+            ])
+            ->add('clave', RepeatedType::class, [
+                'label' => 'Contraseña',
+                'type' => PasswordType::class,
+                'mapped' => false,
+                'invalid_message' => 'Las contraseñas no coinciden',
+                'first_options' => [
+                    'label' => 'Contraseña: ',
+                    'constraints' => [
+                        new NotBlank([
+                            'groups' => ['password']
+                        ])
+                    ]
+                ],
+                'second_options' => [
+                    'label' => 'Repite contraseña: '
+                ]
             ])
         ;
     }
