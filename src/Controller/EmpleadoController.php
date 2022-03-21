@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class EmpleadoController extends AbstractController
 {
@@ -56,7 +57,7 @@ class EmpleadoController extends AbstractController
      * @Route("/empleado/modificar/{id}", name="empleado_modificar")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function modificarEmpleado(Request $request, EmpleadoRepository $empleadoRepository, Empleado $empleado) {
+    public function modificarEmpleado(Request $request, UserPasswordEncoderInterface $userPasswordEncoder, EmpleadoRepository $empleadoRepository, Empleado $empleado) {
         $form = $this->createForm(EmpleadoType::class, $empleado);
         $form->handleRequest($request);
 
@@ -64,6 +65,11 @@ class EmpleadoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                $empleado->setClave(
+                    $userPasswordEncoder->encodePassword(
+                        $empleado, $form->get('clave')->get('first')->getData()
+                    )
+                );
                 $empleadoRepository->guardar();
                 return $this->redirectToRoute('empleado_listar');
             } catch (\Exception $exception) {
@@ -82,9 +88,9 @@ class EmpleadoController extends AbstractController
      * @Route("/empleado/nuevo", name="empleado_nuevo")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function nuevoEmpleado(Request $request, EmpleadoRepository $empleadoRepository) : Response {
+    public function nuevoEmpleado(Request $request, UserPasswordEncoderInterface $userPasswordEncoder, EmpleadoRepository $empleadoRepository) : Response {
         $empleado = $empleadoRepository->nuevo();
-        return $this->modificarEmpleado($request, $empleadoRepository, $empleado);
+        return $this->modificarEmpleado($request, $userPasswordEncoder, $empleadoRepository, $empleado);
     }
 
     /**
