@@ -41,6 +41,32 @@
 bootstrap.min.css" crossorigin="anonymous">
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ path('principal') }}">NovaCafé</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {% set route_name = app.request.get('_route') %}
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {% if route_name == 'listadoProductos' %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('listadoProductos') }}">Productos <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item {% if route_name == 'categoria_listar' %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('categoria_listar') }}">Categorías <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item {% if route_name == 'cliente_listar' %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('cliente_listar') }}">Clientes <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item {% if route_name == 'empleado_listar' %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('empleado_listar') }}">Empleados <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item {% if route_name == 'venta_listar' %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('venta_listar') }}">Ventas <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         {% block body %}
 
         {% endblock %}
