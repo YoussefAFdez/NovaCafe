@@ -11,7 +11,7 @@ class VentaRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Categoria::class);
+        parent::__construct($registry, Venta::class);
     }
 
     public function findAllOrdenados() : array {

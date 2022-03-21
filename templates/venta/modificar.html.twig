@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if venta.id %}Modificar{% else %}Nuevo{% endif %} Venta - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% if venta.id %}
+        <h1>Modificar Venta</h1>
+    {% else %}
+        <h1>Nueva Venta</h1>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">Guardar venta</button>
+    <a class="btn btn-primary" href="{{ path('venta_listar') }}">Volver al listado</a>
+    {% if venta.id %}
+        <a class="btn btn-danger" href="{{ path('venta_eliminar', {'id': venta.id}) }}">Eliminar</a>
+    {% endif %}
+
+{% endblock %}
