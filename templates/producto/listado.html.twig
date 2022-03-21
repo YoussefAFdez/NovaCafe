@@ -2,7 +2,9 @@
 {% block title %} Producto {% endblock %}
 {% block body %}
     <h1>Listado de Productos</h1>
-    <a class="btn btn-primary" href="{{ path('producto_nuevo') }}">Nuevo Producto</a>
+    {% if is_granted("ROLE_GERENTE") %}
+        <a class="btn btn-primary" href="{{ path('producto_nuevo') }}">Nuevo Producto</a>
+    {% endif %}
     <table class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
@@ -29,9 +31,11 @@
                             {{ elemento.producto.categoria }}
                         </a>
                     </td>
-                    <td>
-                        <a href="{{ path('producto_modificar', {'id': elemento.producto.id}) }}" class="btn btn-success">Modificar</a>
-                    </td>
+                    {% if is_granted("ROLE_GERENTE") %}
+                        <td>
+                            <a href="{{ path('producto_modificar', {'id': elemento.producto.id}) }}" class="btn btn-success">Modificar</a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% else %}
             {% endfor %}
