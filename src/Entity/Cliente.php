@@ -50,7 +50,7 @@ class Cliente
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -58,7 +58,7 @@ class Cliente
     /**
      * @return string
      */
-    public function getNombre(): string
+    public function getNombre(): ?string
     {
         return $this->nombre;
     }
@@ -76,7 +76,7 @@ class Cliente
     /**
      * @return string
      */
-    public function getApellido(): string
+    public function getApellido(): ?string
     {
         return $this->apellido;
     }

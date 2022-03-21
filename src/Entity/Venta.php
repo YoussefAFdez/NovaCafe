@@ -60,7 +60,7 @@ class Venta
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -68,7 +68,7 @@ class Venta
     /**
      * @return string
      */
-    public function getCodigo(): string
+    public function getCodigo(): ?string
     {
         return $this->codigo;
     }
@@ -86,7 +86,7 @@ class Venta
     /**
      * @return \DateTime
      */
-    public function getFechaVenta(): \DateTime
+    public function getFechaVenta(): ?\DateTime
     {
         return $this->fechaVenta;
     }
@@ -104,7 +104,7 @@ class Venta
     /**
      * @return Cliente
      */
-    public function getCliente(): Cliente
+    public function getCliente(): ?Cliente
     {
         return $this->cliente;
     }
@@ -140,7 +140,7 @@ class Venta
     /**
      * @return Empleado
      */
-    public function getEmpleado(): Empleado
+    public function getEmpleado(): ?Empleado
     {
         return $this->empleado;
     }

@@ -81,7 +81,7 @@ class Empleado
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -89,7 +89,7 @@ class Empleado
     /**
      * @return string
      */
-    public function getCodigo(): string
+    public function getCodigo(): ?string
     {
         return $this->codigo;
     }
@@ -107,7 +107,7 @@ class Empleado
     /**
      * @return string
      */
-    public function getNombre(): string
+    public function getNombre(): ?string
     {
         return $this->nombre;
     }
@@ -125,7 +125,7 @@ class Empleado
     /**
      * @return string
      */
-    public function getApellidos(): string
+    public function getApellidos(): ?string
     {
         return $this->apellidos;
     }
@@ -143,7 +143,7 @@ class Empleado
     /**
      * @return string
      */
-    public function getDni(): string
+    public function getDni(): ?string
     {
         return $this->dni;
     }
@@ -161,7 +161,7 @@ class Empleado
     /**
      * @return bool
      */
-    public function isGerente(): bool
+    public function isGerente(): ?bool
     {
         return $this->gerente;
     }
@@ -179,7 +179,7 @@ class Empleado
     /**
      * @return bool
      */
-    public function isAdministrador(): bool
+    public function isAdministrador(): ?bool
     {
         return $this->administrador;
     }

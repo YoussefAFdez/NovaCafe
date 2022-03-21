@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -63,7 +64,7 @@ class Categoria
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -71,7 +72,7 @@ class Categoria
     /**
      * @return string
      */
-    public function getCodigo(): string
+    public function getCodigo(): ?string
     {
         return $this->codigo;
     }
@@ -89,7 +90,7 @@ class Categoria
     /**
      * @return string
      */
-    public function getNombre(): string
+    public function getNombre(): ?string
     {
         return $this->nombre;
     }
@@ -107,7 +108,7 @@ class Categoria
     /**
      * @return string
      */
-    public function getDescripcion(): string
+    public function getDescripcion(): ?string
     {
         return $this->descripcion;
     }
@@ -143,7 +144,7 @@ class Categoria
     /**
      * @return Empleado
      */
-    public function getCreadaPor(): Empleado
+    public function getCreadaPor(): ?Empleado
     {
         return $this->creadaPor;
     }
