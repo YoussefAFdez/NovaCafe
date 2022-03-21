@@ -23,9 +23,11 @@
                 <td>
                     <a href="{{ path('cliente_ventas', {'id': cliente.id}) }}" class="btn btn-primary">Ver ventas</a>
                 </td>
-                <td>
-                    <a href="{{ path('cliente_modificar', {'id': cliente.id}) }}" class="btn btn-success">Modificar</a>
-                </td>
+                {% if is_granted("ROLE_GERENTE") %}
+                    <td>
+                        <a href="{{ path('cliente_modificar', {'id': cliente.id}) }}" class="btn btn-success">Modificar</a>
+                    </td>
+                {% endif %}
             </tr>
         {% else %}
             <h2>No hay empleados</h2>
