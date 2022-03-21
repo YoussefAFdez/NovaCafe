@@ -59,4 +59,13 @@ class EmpleadoRepository extends ServiceEntityRepository
         $this->guardar();
     }
 
+    public function findEmpleado(string $getUsername)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery("SELECT e FROM App\Entity\Empleado e WHERE e.nombreUsuario = :nombreUsuario")
+            ->setParameter("nombreUsuario", $getUsername)
+            ->getSingleResult();
+    }
+
 }

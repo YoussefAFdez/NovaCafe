@@ -76,6 +76,7 @@ bootstrap.min.css" crossorigin="anonymous">
                     {% endif %}
                     {% if app.user %}
                         <a href="{{ path('logout') }}" class="nav-link">Conectado como {{ app.user }}. Salir</a>
+                        <a href="{{ path('cambio_clave') }}" class="nav-link">Cambiar Contraseña</a>
                     {% else %}
                         <a href="{{ path('login') }}" class="nav-link">Entrar</a>
                     {% endif %}
