@@ -76,6 +76,18 @@ class Empleado
      */
     private $categorias;
 
+    /**
+     * @var String
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $nombreUsuario;
+
+    /**
+     * @var String
+     * @ORM\Column(type="string")
+     */
+    private $clave;
+
     public function __construct()
     {
         $this->ventas = new ArrayCollection();
@@ -237,6 +249,43 @@ class Empleado
         $this->categorias = $categorias;
         return $this;
     }
+
+    /**
+     * @return String
+     */
+    public function getNombreUsuario(): ?string
+    {
+        return $this->nombreUsuario;
+    }
+
+    /**
+     * @param String $nombreUsuario
+     * @return Empleado
+     */
+    public function setNombreUsuario(string $nombreUsuario): Empleado
+    {
+        $this->nombreUsuario = $nombreUsuario;
+        return $this;
+    }
+
+    /**
+     * @return String
+     */
+    public function getClave(): ?string
+    {
+        return $this->clave;
+    }
+
+    /**
+     * @param String $clave
+     * @return Empleado
+     */
+    public function setClave(string $clave): Empleado
+    {
+        $this->clave = $clave;
+        return $this;
+    }
+
 
 
 }
