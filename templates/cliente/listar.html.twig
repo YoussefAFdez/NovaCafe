@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Listado Clientes - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Listado Clientes</h1>
+    <a class="btn btn-primary" href="{{ path('empleado_nuevo') }}">Nuevo Cliente</a>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Ventas participadas</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.apellido }}</td>
+                <td>
+                    <a href="{{ path('cliente_ventas', {'id': cliente.id}) }}" class="btn btn-primary">Ver ventas</a>
+                </td>
+                <td>
+                    <a href="{{ path('cliente_modificar', {'id': cliente.id}) }}" class="btn btn-success">Modificar</a>
+                </td>
+            </tr>
+        {% else %}
+            <h2>No hay empleados</h2>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

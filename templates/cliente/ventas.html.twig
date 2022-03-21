@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Ventas cliente - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Ventas en las que ha participado el cliente "{{ cliente }}"</h1>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Fecha</th>
+                <th>Productos</th>
+                <th>Empleado Vendedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in ventas %}
+                <tr>
+                    <td>{{ venta.codigo }}</td>
+                    <td>{{ venta.fechaVenta | date('d/m/Y') }}</td>
+                    <td>
+                        <ul>
+                            {% for producto in venta.productos %}
+                                <li>
+                                    <a href="{{ path('producto_modificar', {'id': producto.id}) }}" >{{ producto }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>{{ venta.codigo }}</td>
+                </tr>
+            {% else %}
+                <h2>Este cliente no ha participado en ninguna venta</h2>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+
+
