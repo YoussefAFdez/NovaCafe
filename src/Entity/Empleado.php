@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="empleado")
  * @Assert\EnableAutoMapping()
  */
-class Empleado
+class Empleado implements UserInterface
 {
     /**
      * @var int
@@ -287,5 +288,37 @@ class Empleado
     }
 
 
+    public function getRoles()
+    {
+        $roles = ["ROLE_EMPLEADO"];
 
+        if ($this->isGerente()) {
+            $roles[] = "ROLE_GERENTE";
+        }
+
+        if ($this->isAdministrador()) {
+            $roles[] = "ROLE_ADMIN";
+        }
+
+        return $roles;
+    }
+
+    public function getPassword()
+    {
+        return $this->getClave();
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getUsername()
+    {
+        return $this->getNombreUsuario();
+    }
+
+    public function eraseCredentials()
+    {
+    }
 }
