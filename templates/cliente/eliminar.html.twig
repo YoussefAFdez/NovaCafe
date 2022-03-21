@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Eliminar Cliente - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Eliminación de Cliente</h1>
+    <h2>Estás a punto de eliminar el cliente "{{ cliente }}". ¿Estás seguro de ello? Esta acción no se puede deshacer.</h2>
+    <form method="post">
+        <button type="submit" name="confirmar" value="si" class="btn btn-danger">Borrar permanentemente</button>
+        <a href="{{ path('cliente_listar') }}" class="btn btn-primary">Volver al listado</a>
+    </form>
+{% endblock %}

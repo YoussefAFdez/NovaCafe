@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if cliente.id %}Modificar{% else %}Nuevo{% endif %} Cliente - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% if cliente.id %}
+        <h1>Modificar Cliente</h1>
+    {% else %}
+        <h1>Nuevo Cliente</h1>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">Guardar cliente</button>
+    <a class="btn btn-primary" href="{{ path('cliente_listar') }}">Volver al listado</a>
+    {% if cliente.id %}
+        <a class="btn btn-danger" href="{{ path('cliente_eliminar', {'id': cliente.id}) }}">Eliminar</a>
+    {% endif %}
+
+{% endblock %}
