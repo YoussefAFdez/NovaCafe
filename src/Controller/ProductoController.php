@@ -6,6 +6,7 @@ use App\Entity\Categoria;
 use App\Entity\Producto;
 use App\Form\ProductoType;
 use App\Repository\ProductoRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ class ProductoController extends AbstractController
 
     /**
      * @Route("/producto", name="listadoProductos")
+     * @Security("is_granted('ROLE_EMPLEADO')")
      */
     public function listado(ProductoRepository $productoRepository) : Response {
         $elementos = $productoRepository->findAllOrdenados();
@@ -26,6 +28,7 @@ class ProductoController extends AbstractController
 
     /**
      * @Route("/producto/nuevo", name="producto_nuevo")
+     * @Security("is_granted('ROLE_GERENTE')")
      */
     public function nuevoProducto(Request $request, ProductoRepository $productoRepository) : Response {
         $producto = $productoRepository->nuevo();
@@ -34,6 +37,7 @@ class ProductoController extends AbstractController
 
     /**
      * @Route("/producto/{id}", name="categoriaProducto")
+     * @Security("is_granted('ROLE_EMPLEADO')")
      */
     public function categoriaDeProducto(ProductoRepository $productoRepository, Categoria $categoria) : Response {
         $productos = $productoRepository->findByCategoria($categoria->getId());
@@ -45,6 +49,7 @@ class ProductoController extends AbstractController
 
     /**
      * @Route("/producto/modificar/{id}", name="producto_modificar")
+     * @Security("is_granted('ROLE_GERENTE')")
      */
     public function modificarProducto(Request $request, ProductoRepository $productoRepository, Producto $producto) {
         $form = $this->createForm(ProductoType::class, $producto);
@@ -67,6 +72,7 @@ class ProductoController extends AbstractController
 
     /**
      * @Route("/producto/eliminar/{id}", name="producto_eliminar")
+     * @Security("is_granted('ROLE_GERENTE')")
      */
     public function eliminarProducto(Request $request, ProductoRepository $productoRepository, Producto $producto) : Response {
         if ($request->get('confirmar', false)) {
