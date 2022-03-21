@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="producto")
+ * @Assert\EnableAutoMapping()
  */
 class Producto
 {
@@ -23,30 +25,37 @@ class Producto
     /**
      * @var string
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^CO\d{5,5}$/")
      */
     private $codigo;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $nombre;
 
     /**
      * @var string
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $descripcion;
 
     /**
      * @var float
      * @ORM\Column(type="float")
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^\d{1,}.\d{1,2}$/)
      */
     private $precio;
 
     /**
      * @var int
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      */
     private $stock;
 
@@ -60,6 +69,7 @@ class Producto
      * @var Categoria
      * @ORM\ManyToOne(targetEntity="Categoria", inversedBy="productos")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $categoria;
 

@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="empleado")
+ * @Assert\EnableAutoMapping()
  */
 class Empleado
 {
@@ -23,24 +25,30 @@ class Empleado
     /**
      * @var string
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^EM\d{3,3}$/")
      */
     private $codigo;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $nombre;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $apellidos;
 
     /**
      * @var string
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^\d{8,8}[A-Z]$/")
      */
     private $dni;
 

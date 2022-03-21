@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="cliente")
+ * @Assert\EnableAutoMapping()
  */
 class Cliente
 {
@@ -22,12 +24,14 @@ class Cliente
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $nombre;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $apellido;
 

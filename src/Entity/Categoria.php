@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="categoria")
+ * @Assert\EnableAutoMapping()
  */
 class Categoria
 {
@@ -23,18 +25,22 @@ class Categoria
     /**
      * @var string
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^CA\d{5,5}$/")
      */
     private $codigo;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $nombre;
 
     /**
      * @var string
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $descripcion;
 
@@ -42,6 +48,7 @@ class Categoria
      * @var Empleado
      * @ORM\ManyToOne(targetEntity="Empleado", inversedBy="categorias")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $creadaPor;
 

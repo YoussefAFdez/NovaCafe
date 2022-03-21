@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="venta")
+ * @Assert\EnableAutoMapping()
  */
 class Venta
 {
@@ -23,12 +25,15 @@ class Venta
     /**
      * @var string
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^VE\d{5,5}$/")
      */
     private $codigo;
 
     /**
      * @var \DateTime
      * @ORM\Column(type="date")
+     * @Assert\NotBlank()
      */
     private $fechaVenta;
 
@@ -36,12 +41,14 @@ class Venta
      * @var Cliente
      * @ORM\ManyToOne(targetEntity="Cliente", inversedBy="ventas")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $cliente;
 
     /**
      * @var Producto[]|Collection
      * @ORM\ManyToMany(targetEntity="Producto", inversedBy="ventas")
+     * @Assert\NotBlank()
      */
     private $productos;
 
@@ -49,6 +56,7 @@ class Venta
      * @var Empleado
      * @ORM\ManyToOne(targetEntity="Empleado", inversedBy="ventas")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $empleado;
 
