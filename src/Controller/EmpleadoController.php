@@ -19,9 +19,11 @@ class EmpleadoController extends AbstractController
      */
     public function listarEmpleados(EmpleadoRepository $empleadoRepository) : Response {
         $empleados = $empleadoRepository->findAllOrdenados();
+        $usuario = $this->getUser();
 
         return $this->render("empleado/listar.html.twig", [
-            'empleados' => $empleados
+            'empleados' => $empleados,
+            'usuario' => $usuario
         ]);
     }
 

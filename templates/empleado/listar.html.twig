@@ -14,10 +14,12 @@
                 <th>Nombre</th>
                 <th>Apellidos</th>
                 <th>DNI</th>
+                <th>Nombre de Usuario</th>
                 <th>Gerente</th>
                 <th>Administrador</th>
                 <th>Ventas</th>
                 <th>Categorias Creadas</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +29,7 @@
                     <td>{{ empleado.nombre }}</td>
                     <td>{{ empleado.apellidos }}</td>
                     <td>{{ empleado.dni }}</td>
+                    <td>{{ empleado.nombreUsuario }}</td>
                     <td>
                         {% if empleado.gerente %}
                             Si
@@ -47,9 +50,11 @@
                     <td>
                         <a href="{{ path('empleado_categorias', {'id': empleado.id}) }}" class="btn btn-primary">Ver Categorías</a>
                     </td>
-                    <td>
-                        <a href="{{ path('empleado_modificar', {'id': empleado.id}) }}" class="btn btn-success">Modificar</a>
-                    </td>
+                    {% if usuario.username == empleado.nombreUsuario or empleado.administrador == false %}
+                        <td>
+                            <a href="{{ path('empleado_modificar', {'id': empleado.id}) }}" class="btn btn-success">Modificar</a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% else %}
                 <h2>No hay empleados</h2>

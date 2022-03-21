@@ -13,7 +13,7 @@
     {{ form_widget(form) }}
     <button type="submit" class="btn btn-success">Guardar empleado</button>
     <a class="btn btn-primary" href="{{ path('empleado_listar') }}">Volver al listado</a>
-    {% if empleado.id %}
+    {% if empleado.id and usuario.username != empleado.nombreUsuario %}
         <a class="btn btn-danger" href="{{ path('empleado_eliminar', {'id': empleado.id}) }}">Eliminar</a>
     {% endif %}
 
