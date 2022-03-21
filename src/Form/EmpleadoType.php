@@ -27,10 +27,12 @@ class EmpleadoType extends AbstractType
                 'label' => 'DNI: '
             ])
             ->add('gerente', CheckboxType::class, [
-                'label' => 'Es Gerente:'
+                'label' => 'Es Gerente:',
+                'required' => false
             ])
             ->add('administrador', CheckboxType::class, [
-                'label' => 'Es Administrador:'
+                'label' => 'Es Administrador:',
+                'required' => false
             ])
         ;
     }
