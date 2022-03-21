@@ -2,7 +2,9 @@
 {% block title %} Categorías - {{ parent() }} {% endblock %}
 {% block body %}
     <h1>Listado de Categorías</h1>
-    <a href="{{ path('categoria_nuevo') }}" class="btn btn-primary">Nueva Categoría</a>
+    {% if is_granted("ROLE_GERENTE") %}
+        <a href="{{ path('categoria_nuevo') }}" class="btn btn-primary">Nueva Categoría</a>
+    {% endif %}
     <table class="table table-bordered table-hover table-striped">
         <thead>
         <tr>
@@ -23,9 +25,11 @@
                 <td>
                     <a href="{{ path("categoria_productos", {'id': categoria.id}) }}" class="btn btn-primary">Ver Productos</a>
                 </td>
-                <td>
-                    <a href="{{ path('categoria_modificar', {'id': categoria.id}) }}" class="btn btn-success">Modificar</a>
-                </td>
+                {% if is_granted("ROLE_GERENTE") %}
+                    <td>
+                        <a href="{{ path('categoria_modificar', {'id': categoria.id}) }}" class="btn btn-success">Modificar</a>
+                    </td>
+                {% endif %}
             </tr>
         {% else %}
         {% endfor %}
