@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categoria;
 use App\Form\CategoriaType;
 use App\Repository\CategoriaRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ class CategoriaController extends AbstractController
 
     /**
      * @Route("/categoria", name="categoria_listar")
+     * @Security("is_granted('ROLE_EMPLEADO')")
      */
     public function listado(CategoriaRepository $categoriaRepository) : Response {
         $categorias = $categoriaRepository->findAllOrdenados();
@@ -25,6 +27,7 @@ class CategoriaController extends AbstractController
 
     /**
      * @Route("/categoria/nuevo", name="categoria_nuevo")
+     * @Security("is_granted('ROLE_GERENTE')")
      */
     public function nuevaCategoria(Request $request, CategoriaRepository $categoriaRepository) : Response {
         $categoria = $categoriaRepository->nuevo();
@@ -33,6 +36,7 @@ class CategoriaController extends AbstractController
 
     /**
      * @Route("/categoria/{id}", name="categoria_productos")
+     * @Security("is_granted('ROLE_EMPLEADO')")
      */
     public function categoriaDeProducto(CategoriaRepository $categoriaRepository, Categoria $categoria) : Response {
         $productos = $categoriaRepository->findByCategoria($categoria->getId());
@@ -44,6 +48,7 @@ class CategoriaController extends AbstractController
 
     /**
      * @Route("/categoria/modificar/{id}", name="categoria_modificar")
+     * @Security("is_granted('ROLE_GERENTE')")
      */
     public function modificarCategoria(Request $request, CategoriaRepository $categoriaRepository, Categoria $categoria) {
         $form = $this->createForm(CategoriaType::class, $categoria);
@@ -66,6 +71,7 @@ class CategoriaController extends AbstractController
 
     /**
      * @Route("/categoria/eliminar/{id}", name="categoria_eliminar")
+     * @Security("is_granted('ROLE_GERENTE')")
      */
     public function eliminarCategoria(Request $request, CategoriaRepository $categoriaRepository, Categoria $categoria) : Response {
         if ($request->get('confirmar', false)) {
