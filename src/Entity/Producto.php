@@ -48,7 +48,7 @@ class Producto
      * @var float
      * @ORM\Column(type="float")
      * @Assert\NotBlank()
-     * @Assert\Regex("/^\d{1,}.\d{1,2}$/)
+     * @Assert\Regex("/^\d{1,}.\d{1,2}$/")
      */
     private $precio;
 
