@@ -6,6 +6,7 @@ namespace App\Repository;
 use App\Entity\Venta;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\Date;
 
 class VentaRepository extends ServiceEntityRepository
 {
@@ -29,6 +30,7 @@ class VentaRepository extends ServiceEntityRepository
     public function nuevo()
     {
         $venta = new Venta();
+        $venta->setFechaVenta(new \DateTime());
         $this->getEntityManager()->persist($venta);
 
         return $venta;
