@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if empleado.id %}Modificar{% else %}Nuevo{% endif %} Empleado - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% if empleado.id %}
+        <h1>Modificar Empleado</h1>
+    {% else %}
+        <h1>Nuevo Empleado</h1>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-success">Guardar empleado</button>
+    <a class="btn btn-primary" href="{{ path('empleado_listar') }}">Volver al listado</a>
+    {% if empleado.id %}
+        <a class="btn btn-danger" href="{{ path('empleado_eliminar', {'id': empleado.id}) }}">Eliminar</a>
+    {% endif %}
+
+{% endblock %}

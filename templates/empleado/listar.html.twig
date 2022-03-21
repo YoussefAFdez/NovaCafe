@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Listado Empleados - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Listado Empleados</h1>
+    <a class="btn btn-primary" href="{{ path('empleado_nuevo') }}">Nuevo Empleado</a>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Gerente</th>
+                <th>Administrador</th>
+                <th>Ventas</th>
+                <th>Categorias Creadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for empleado in empleados %}
+                <tr>
+                    <td>{{ empleado.codigo }}</td>
+                    <td>{{ empleado.nombre }}</td>
+                    <td>{{ empleado.apellidos }}</td>
+                    <td>{{ empleado.dni }}</td>
+                    <td>
+                        {% if empleado.gerente %}
+                            Si
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if empleado.administrador %}
+                            Si
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('empleado_ventas', {'id': empleado.id}) }}" class="btn btn-primary">Ver Ventas</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('empleado_categorias', {'id': empleado.id}) }}" class="btn btn-primary">Ver Categorías</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('empleado_modificar', {'id': empleado.id}) }}" class="btn btn-success">Modificar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <h2>No hay empleados</h2>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

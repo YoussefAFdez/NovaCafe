@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Ventas - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Ventas del empleado {{ empleado }}</h1>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Productos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in ventas %}
+                <tr>
+                    <td>{{ venta.codigo }}</td>
+                    <td>{{ venta.fechaVenta | date('d/m/Y') }}</td>
+                    <td>{{ venta.cliente }}</td>
+                    <td>
+                        <ul>
+                            {% for producto in venta.productos %}
+                                <li>
+                                    <a href="{{ path('producto_modificar', {'id': producto.id}) }}" >{{ producto }}</a>
+                                </li>
+                            {% else %}
+                                <li>No hay productos</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% else %}
+                <h2>No existen ventas</h2>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+
+
